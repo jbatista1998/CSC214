@@ -1,5 +1,6 @@
 package group2;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,16 +67,25 @@ public class SceneLogIn {
 	 */
 	public void handleLoginButtonAction() throws IOException
 	{
-		//if (passwordIsValid() && userIDIsvalid())
-		//{
-		Parent userInfo;
-		userInfo = FXMLLoader.load(getClass().getResource("KioskHome.fxml"));
+		
+		try {
+			if (Security.authenticateUser(UID.getText(), UPW.getText()))
+			{
+			Parent userInfo;
+			userInfo = FXMLLoader.load(getClass().getResource("KioskHome.fxml"));
 
-		Stage newStage = Driver.parentWindow;
-		newStage.getScene().setRoot(userInfo);
+			Stage newStage = Driver.parentWindow;
+			newStage.getScene().setRoot(userInfo);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 			/*
-		//}
 		else
 		{
 			SceneHome self = new SceneHome();
