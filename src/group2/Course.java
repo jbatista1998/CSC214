@@ -9,7 +9,7 @@ public class Course {
 	private String courseName;
 	
 
-	private int cRN;
+	private int CRN;
 	private int time;
 	private int date;
 	
