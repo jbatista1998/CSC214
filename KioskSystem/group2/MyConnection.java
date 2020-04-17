@@ -8,11 +8,11 @@ public class MyConnection {
     public static Connection getConnection() {
 
     	//Database url
-        String url = "jdbc:mysql://database-1.cqdedei6udfi.us-east-1.rds.amazonaws.com/localhost";
+        String url = "jdbc:mysql://localhost/mydb";
         //Database username (Only used for the program)
-        String user = "java";
+        String user = "root";
         //Database password
-        String password = "Java123!";
+        String password = "root123";
         //Creates connection object
         Connection con = null;
         try {

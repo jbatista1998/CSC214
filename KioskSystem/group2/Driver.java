@@ -29,7 +29,8 @@ public class Driver extends Application{
     	// standard JFX UI stuff
     	stage.setScene(new Scene(controllerObject.generateParent())); // see SceneLogIn fro generateParent info
         stage.setTitle("Kiosk");
-        //stage.setFullScreen(true);
+        stage.setFullScreen(true);
         stage.show();
     }
+    
 }

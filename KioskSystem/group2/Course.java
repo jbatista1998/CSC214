@@ -2,34 +2,56 @@ package group2;
 
 public class Course {
 
-	private String activeSemester;
-	private String instructor;
+	private String semester;
+	
+	private int instructorID;
+	private String instructorName;
+	
+	private String building;
 	private String room;
-	private String campus;
-	private String courseName;
 	
+	private int CRN;
+	private int courseID;
+	private String name;
+	private String subject;
+	private int number;
+	private int creditHours; 
+	
+	
+	private String instructionalMethod;
+	
+	private String meetingTimes;
+	private String startTime;
+	private String endTime;
 
-	private int cRN;
-	private int time;
-	private int date;
+	private String startDate;
+	private String endDate;
 	
-	public String getActiveSemester() {
-		return activeSemester;
+	public String getSemester() {
+		return semester;
 	}
 
 
-	public void setActiveSemester(String activeSemester) {
-		this.activeSemester = activeSemester;
+	public void setSemester(String semester) {
+		this.semester = semester;
 	}
 
 
 	public String getInstructor() {
-		return instructor;
+		return instructorName;
 	}
 
 
 	public void setInstructor(String instructor) {
-		this.instructor = instructor;
+		this.instructorName = instructor;
+	}
+	
+	public void setInstructorID(int id) {
+		instructorID = id;
+	}
+	
+	public int getInstructorID() {
+		return instructorID;
 	}
 
 
@@ -43,53 +65,122 @@ public class Course {
 	}
 
 
-	public String getCampus() {
-		return campus;
+	public String getBuilding() {
+		return building;
 	}
 
 
-	public void setCampus(String campus) {
-		this.campus = campus;
+	public void setBuilding(String building) {
+		this.building = building;
 	}
 
 
 	public String getCourseName() {
-		return courseName;
+		return name;
 	}
 
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setCourseName(String name) {
+		this.name = name;
+	}
+	
+	public String getSubject() {
+		return subject;
 	}
 
 
-	public int getcRN() {
-		return cRN;
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	
+	public int getCourseNumber() {
+		return number;
+	}
+	
+	public void setCourseNumber(int number) {
+		this.number = number;
 	}
 
 
-	public void setcRN(int cRN) {
-		this.cRN = cRN;
+	public int getCRN() {
+		return CRN;
 	}
 
 
-	public int getTime() {
-		return time;
+	public void setCRN(int CRN) {
+		this.CRN = CRN;
+	}
+
+	public int getCreditHours() {
+		return creditHours;
 	}
 
 
-	public void setTime(int time) {
-		this.time = time;
+	public void setCreditHours(int creditHours) {
+		this.creditHours = creditHours;
+	}
+	
+	public String getMeetingTimes() {
+		return meetingTimes;
 	}
 
 
-	public int getDate() {
-		return date;
+	public void setMeetingTimes(String meetingTimes) {
+		this.meetingTimes = meetingTimes;
+	}
+
+	public String getStartTime() {
+		return startTime;
 	}
 
 
-	public void setDate(int date) {
-		this.date = date;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	
+	public String getEndTime() {
+		return endTime;
+	}
+
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	
+	public String getEndDate() {
+		return endDate;
+	}
+
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	
+	public int getCourseID() {
+		return courseID;
+	}
+	
+	public void setCourseID(int courseID) {
+		this.courseID = courseID;
+	}
+	
+	public String getInstructonialMethod() {
+		return instructionalMethod;
+	}
+	
+	public void setInstructionalMethod(String instructionalMethod) {
+		this.instructionalMethod = instructionalMethod;
 	}
 	
 	Course()

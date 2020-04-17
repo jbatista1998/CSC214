@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F7BC0A;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group2.SceneHome" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F7BC0A;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group2.SceneHome">
    <children>
-      <AnchorPane layoutY="38.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #0A6B34;" >
+      <AnchorPane layoutY="38.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #0A6B34;">
          <children>
             <Text layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to DTCC Student Service Kiosk System" textAlignment="CENTER" wrappingWidth="600.0">
                <fill>
@@ -36,8 +36,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text fill="#0a6b34" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi," />
-            <TextField promptText="Here shows student name" style="-fx-background-color: #F7BC0A;" GridPane.columnIndex="1" />
+            <Text fx:id="studentName" fill="#0a6b34" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children>
       </GridPane>
       <Button layoutX="499.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #F7BC0A;" text="Sign out" textFill="#0a6b34" />
@@ -52,14 +51,13 @@
           <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Student Information" onAction="#handleStudentInformation"/>
+            <Button mnemonicParsing="false" onAction="#handleStudentInformation" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Student Information" />
             <Button mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Account Summary" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Class Information" GridPane.rowIndex="2" onAction="#handleClassInformation"/>
-            <Button mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Library" GridPane.columnIndex="1"  onAction="#handleLibrary"/>
-            <Button mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Bookstore" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#handleBookStore"/>
+            <Button mnemonicParsing="false" onAction="#handleClassInformation" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Class Information" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#handleLibrary" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Library" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleBookStore" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Bookstore" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #0A6B34;" text="Quick Help" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
 </AnchorPane>
-

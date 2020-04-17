@@ -14,14 +14,13 @@ import java.util.logging.Logger;
  */
 public class Security {
     
-    public static boolean authenticateUser(String UID, String UPW) throws NoSuchAlgorithmException {
+    public static boolean authenticateUser(String UID, String UPW) throws NoSuchAlgorithmException, SQLException {
     	boolean authenticated = false;
         PreparedStatement ps;
 
-        String query = "SELECT * FROM Credentials WHERE auth_hash =?";
+        String query = "SELECT * FROM Credentials WHERE AuthenticationHash =?";
         
 
-        try {
             ps = MyConnection.getConnection().prepareStatement(query);
 
             ps.setString(1, getAuthHash(UID, UPW));
@@ -29,13 +28,12 @@ public class Security {
             ResultSet rs = ps.executeQuery();
 
 
-        if (rs.next())
+        if (rs.next()) {
             authenticated = true;
+            Student.setStudent(Integer.parseInt(UID));
+        }
             else 
             	System.out.println("Failed");
-        }catch (SQLException ex) {
-            Logger.getLogger(Security.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         return authenticated;
     }

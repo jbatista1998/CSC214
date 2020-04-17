@@ -1,6 +1,7 @@
 package group2;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+//TODO: Add javadoc
 /*
  * This is the primary controller that will handle the
  * initial login UI. This will launch the login prompt
@@ -19,142 +25,102 @@ import javafx.stage.Stage;
  *
  */
 public class SceneLogIn {
-	public ArrayList<String> studentID;
-	public ArrayList<String> studentPW;
-	/* these are the property fields from the fxml
-	 * they will hold what values the user enters from there they can be validated
-	 */
 
-@FXML private TextField UID;
-@FXML private PasswordField UPW;
+    /* these are the property fields from the fxml
+     * they will hold what values the user enters from there they can be validated
+     */
+    @FXML
+    private TextField UID;
+    @FXML
+    private PasswordField UPW;
+    
+	public static boolean isTargetSceneReloaded = false;
 
-	public SceneLogIn()
-	{
-		// Initializes student IDs and passwords to compare and validate
-		//this.setStudentID(getStudentID());
-		//this.setStudentPW(getStudentPasswords());
+
+    //TODO: Add javadoc
+    public Parent generateParent() throws IOException {
+        Parent mainFXML = FXMLLoader.load(getClass().getResource("Kiosk_login.fxml"));
+
+        return mainFXML;
+    }
+
+  //TODO: Add javadoc
+    /*
+     * This function handles the action of clicking on the login button
+     * essentially all it does it creates a new object of the next Scene
+     * the constructor of the next scene should handle the rest of the user actions
+     */
+    public void handleLoginButtonAction() throws SQLException, IOException, NoSuchAlgorithmException {
+
+    	if(userIDIsvalid()){
+        	//Authenticates user before opening next scene
+            if (Security.authenticateUser(UID.getText(), UPW.getText())) {
+                Parent userInfo;
+                userInfo = FXMLLoader.load(getClass().getResource("KioskHome.fxml"));
+
+                Stage newStage = Driver.parentWindow;
+                newStage.getScene().setRoot(userInfo);
+            }
+        }
+    	else {
+    		System.out.println("here");
+			isTargetSceneReloaded = true;
+			SceneLogIn self = new SceneLogIn();
+
+			self.startScene();
+    	}
+    }
+    
+    //TODO: Add javadoc
+    public void handleQuickHelpAction() throws IOException {
+        SceneQuickHelp QH = new SceneQuickHelp();
+    }
+    
+    private boolean userIDIsvalid() {
+		// TODO Auto-generated method stub
+
+		//System.out.println(UID.getCharacters());
+		if (UID.getCharacters().length() != 9) // check to make sure it is the appropriate length
+			return false;
+
+		else if(UID.getCharacters().toString().matches("^[0-9]+")) // checks against every character to see if each char is 0-9
+																	// if not then it returns false as a condition and skips
+			return true;
+
+
+		else
+			return false;
 	}
-
-	/* A work around to get the initial scene loaded in start
-	 * essentially it loads the UI into type parent the returns that value
-	 */
-
-	public Parent generateParent() throws IOException {
-		Parent mainFXML = FXMLLoader.load(getClass().getResource("Kiosk_login.fxml"));
-/*
-		FXMLLoader fxml = new FXMLLoader(getClass().getResource("Kiosk_login.fxml"));
-		//fxml.setRoot(this);
-		fxml.setController(this);
-
-		try {
-			fxml.load();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		return mainFXML;
-	}
-
-
-
-
-
-	/*
-	 * This function handles the action of clicking on the login button
-	 * essentially all it does it creates a new object of the next Scene
-	 * the constructor of the next scene should handle the rest of the user actions
-	 */
-	public void handleLoginButtonAction() throws IOException
-	{
-		
-		try {
-			if (Security.authenticateUser(UID.getText(), UPW.getText()))
-			{
+    
+    void startScene() throws IOException {
+		if (!isTargetSceneReloaded)
+		{
 			Parent userInfo;
-			userInfo = FXMLLoader.load(getClass().getResource("KioskHome.fxml"));
+			userInfo = FXMLLoader.load(getClass().getResource("Kiosk_login.fxml"));
+			Stage newStage;
 
-			Stage newStage = Driver.parentWindow;
+			newStage = Driver.parentWindow;
 			newStage.getScene().setRoot(userInfo);
-			}
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
-			/*
 		else
 		{
-			SceneHome self = new SceneHome();
+			BorderPane bp = new BorderPane();
+
+			Parent userInfo;
+			userInfo = FXMLLoader.load(getClass().getResource("Kiosk_login.fxml"));
+			Text t = new Text("Your username or password is incorrect");
+			t.setFill(Color.RED);
+			bp.setTop(t);
+			bp.setCenter(userInfo);
+
+			Stage newStage;
+
+			// To-do figure out how to change text of welcome screen
+
+
+			newStage = Driver.parentWindow;
+			newStage.getScene().setRoot(bp);
 		}
-		*/
-		/*
-		Parent userInfo = null;
-		userInfo = FXMLLoader.load(getClass().getResource("Kiosk_StuInfo.fxml"));
-		Stage newStage;
-
-		newStage = Driver.parentWindow;
-		newStage.getScene().setRoot(userInfo);
-	*/
-	}
-	public void handleQuickHelpAction() throws IOException
-	{
-		SceneQuickHelp QH = new SceneQuickHelp();
-	}
-
-
-
-
-	/*
-	 * TODO Write in the validation functions
-	 *
-	 */
-	//TODO get the studentIds from the DB
-
-	private ArrayList<String> getStudentIds()
-	{
-		return null;
-
-	}
-	private ArrayList<String> getStudentPasswords()
-	{
-		return null;
-
-	}
-	private boolean userIDIsvalid() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	private boolean passwordIsValid() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	private boolean userIDIsvalidFormat()
-	{
-		return true;
-	}
-	private boolean passwordIsValidFormat()
-	{
-		return true;
-	}
-
-	public ArrayList<String> getStudentID() {
-		return studentID;
-	}
-
-	public void setStudentID(ArrayList<String> studentID) {
-		this.studentID = studentID;
-	}
-
-	public ArrayList<String> getStudentPW() {
-		return studentPW;
-	}
-
-	public void setStudentPW(ArrayList<String> studentPW) {
-		this.studentPW = studentPW;
 	}
 
 
