@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //Static class that retrieves and holds student data during use. 
-public class User {
+public class Student {
 
     private static int id;
 

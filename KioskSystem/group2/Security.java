@@ -30,7 +30,7 @@ public class Security {
 
         if (rs.next()) {
             authenticated = true;
-            User.setStudent(Integer.parseInt(UID));
+            Student.setStudent(Integer.parseInt(UID));
         }
             else 
             	System.out.println("Failed");
