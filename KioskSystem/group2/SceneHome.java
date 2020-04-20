@@ -64,7 +64,7 @@ public class SceneHome implements Initializable {
 	//Retrieves dynamic content to display
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		studentName.setText("Hello, " + Student.getFirstName());
+		studentName.setText("Hello, " + User.getFirstName());
 
 	}
 
